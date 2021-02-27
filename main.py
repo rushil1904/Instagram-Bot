@@ -4,9 +4,9 @@ from time import sleep
 
 class InstaUnfollowers:
     def __init__(self, username, password):
-        self.driver = webdriver.Firefox()
-        self.driver.get("https://instagram.com")
-        sleep(2)
+        self.driver = webdriver.Firefox()           #using mozilla's gecko driver 
+        self.driver.get("https://instagram.com")    #Instagram URL
+        sleep(2) #waiting for 2 seconds before moving on to the next part of the code
         # instagram login
         username_type = self.driver.find_element_by_xpath("/html/body/div[1]/section/main/article/div[2]/div[1]/div/form/div/div[1]/div/label/input")
         username_type.send_keys(username)
@@ -14,7 +14,7 @@ class InstaUnfollowers:
         password_type.send_keys(password)
         submit = self.driver.find_element_by_xpath('/html/body/div[1]/section/main/article/div[2]/div[1]/div/form/div/div[3]/button')
         submit.click()
-        sleep(8)
+        sleep(8)            #Sleep time can be reduced for faster internet connections
         self.driver.find_element_by_xpath('/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/span/img').click()
         self.driver.find_element_by_xpath('/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/div[2]/div[2]/div[2]/a[1]/div/div[2]/div/div/div/div').click()
         sleep(5)
@@ -27,7 +27,7 @@ class InstaUnfollowers:
         Followers.click()
         followers = self.get_people()
         not_following_back = [user for user in following if user not in followers]
-        print(not_following_back)
+        print(not_following_back)   #People not following you back
 
     def get_people(self):
         sleep(7)
@@ -46,12 +46,12 @@ class InstaUnfollowers:
         close.click()
         return names
 
-username = ''
-password = ''
-my_bot = InstaUnfollowers(username, password)
-my_bot.get_unfollowers()
+username = ''       #Insert your Instagram username
+password = ''       #Insert your Instagram password
+bot = InstaUnfollowers(username, password)
+bot.get_unfollowers()
 try:
-    my_bot.driver.close()
+    bot.driver.close()
 except:
     print("Fail")
-    my_bot.driver.close()
+    bot.driver.close()
