@@ -4,9 +4,9 @@ from time import sleep
 
 class InstaUnfollowers:
     def __init__(self, username, password):
-        self.driver = webdriver.Firefox()           #using mozilla's gecko driver 
+        self.driver = webdriver.Firefox()           #Using mozilla's gecko driver 
         self.driver.get("https://instagram.com")    #Instagram URL
-        sleep(2) #waiting for 2 seconds before moving on to the next part of the code
+        sleep(2) #Waiting for 2 seconds before moving on to the next part of the code
         # instagram login
         username_type = self.driver.find_element_by_xpath("/html/body/div[1]/section/main/article/div[2]/div[1]/div/form/div/div[1]/div/label/input")
         username_type.send_keys(username)
