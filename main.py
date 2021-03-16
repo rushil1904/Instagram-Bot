@@ -2,7 +2,7 @@ from selenium import webdriver
 from time import sleep
 
 
-class InstaUnfollowers:
+class Unfollowers:
     def __init__(self, username, password):
         self.driver = webdriver.Firefox()           #Using mozilla's gecko driver 
         self.driver.get("https://instagram.com")    #Instagram URL
@@ -22,14 +22,14 @@ class InstaUnfollowers:
     def get_unfollowers(self):
         Following = self.driver.find_element_by_xpath("//a[contains(@href,'/following')]")
         Following.click()
-        following = self.get_people()
+        following = self.get_users()
         Followers = self.driver.find_element_by_xpath("//a[contains(@href,'/followers')]")
         Followers.click()
-        followers = self.get_people()
+        followers = self.get_users()
         not_following_back = [user for user in following if user not in followers]
         print(not_following_back)   #People not following you back
 
-    def get_people(self):
+    def get_users(self):
         sleep(7)
         scroll_box = self.driver.find_element_by_css_selector(".isgrP")
         prev_height, height = 0, 1
@@ -48,7 +48,7 @@ class InstaUnfollowers:
 
 username = ''       #Insert your Instagram username
 password = ''       #Insert your Instagram password
-bot = InstaUnfollowers(username, password)
+bot = Unfollowers(username, password)
 bot.get_unfollowers()
 try:
     bot.driver.close()
